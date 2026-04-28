@@ -1,6 +1,7 @@
 # VoteWise AI — Interactive Election Process Assistant
+**Built using AI-assisted development with iterative prompt engineering, debugging and product refinement.**
 
-VoteWise AI is a modern, accessible, and interactive platform designed to educate users about the election process. Built as a high-quality Google PromptWars submission, it leverages the Gemini AI API for multilingual voter assistance.
+VoteWise AI is a modern, accessible, and interactive platform designed to educate users about the election process. Created as a submission for Google PromptWars, it leverages the Gemini AI API for multilingual voter assistance.
 
 ## 🎯 Problem Statement
 Democracy relies on voter participation, yet many eligible citizens remain confused by the complex electoral process. First-time voters often struggle to find clear information regarding voter registration, document requirements, and polling locations. Furthermore, language barriers restrict access to crucial voting information in a diverse country like India.
@@ -20,8 +21,8 @@ VoteWise AI solves this by gamifying and simplifying voter education. It provide
 - **PWA Ready**: Built with Vite PWA plugin to support offline installation and mobile-native feel.
 
 ## 🤖 AI Usage (Google Gemini + Fallback)
-VoteWise AI heavily integrates `@google/generative-ai` (`gemini-pro` model):
-1. **Eligibility Analyzer**: Takes user situations (e.g., "I am 17 turning 18 next month") and returns structured JSON evaluating their eligibility status.
+VoteWise AI integrates Google Gemini with graceful fallback support `@google/generative-ai` (`gemini-pro` model):
+1. **Eligibility Analyzer**: Takes user situations (e.g., "I am 17 turning 18 next month") and provides eligibility guidance based on user input.
 2. **Chat Assistant**: Answers user questions interactively while adhering to a strict neutral, informative system prompt.
 3. **Resilient Fallback Architecture**: If the Gemini API hits a rate limit, the network drops, or the API key is missing, the application safely degrades to **AI Fallback Mode**. This uses a hardcoded, multilingual dictionary to ensure users always receive critical FAQ answers without experiencing broken UI.
 
@@ -64,3 +65,6 @@ This project is optimized for judging criteria:
 - **Accessibility**: ARIA labels, high contrast colors, and clear navigation.
 - **Google Services**: Integration of the Gemini API for natural language understanding.
 - **Mobile-first Design**: Fully responsive across devices.
+
+
+🏆LIVE DEMO LINK : https://votewise-ai-trupti.netlify.app/
