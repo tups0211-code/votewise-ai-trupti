@@ -212,51 +212,73 @@ const PollingBooth = () => {
                   </h3>
                 </div>
                 
-                <div className="grid gap-4">
-                  {booths.map((booth, idx) => (
-                    <motion.div 
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                      key={booth.id} 
-                    >
-                      <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} perspective={1000} scale={1.01} transitionSpeed={2000} gyroscope={true}>
-                        <div className="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 hover:border-blue-electric/30 transition-all duration-300 gap-6 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer">
-                          <div>
-                            <div className="flex items-center gap-3 mb-2">
-                              <h4 className="font-extrabold text-slate-900 text-xl">{booth.name}</h4>
-                              <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-sm ${booth.type === 'Primary' ? 'bg-blue-50 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>
-                                {booth.type}
-                              </span>
+                <div className="grid lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    {booths.map((booth, idx) => (
+                      <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.1 }}
+                        key={booth.id} 
+                      >
+                        <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} perspective={1000} scale={1.01} transitionSpeed={2000} gyroscope={true}>
+                          <div className="group flex flex-col md:flex-row md:items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 hover:border-blue-electric/30 transition-all duration-300 gap-6 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] cursor-pointer">
+                            <div className="flex-grow">
+                              <div className="flex items-center gap-3 mb-2">
+                                <h4 className="font-extrabold text-slate-900 text-xl">{booth.name}</h4>
+                                <span className={`text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-sm ${booth.type === 'Primary' ? 'bg-blue-50 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>
+                                  {booth.type}
+                                </span>
+                              </div>
+                              <p className="text-slate-500 flex items-center gap-2 text-base">
+                                <MapPin size={16} className="text-slate-400" /> {booth.address}
+                              </p>
                             </div>
-                            <p className="text-slate-500 flex items-center gap-2 text-base">
-                              <MapPin size={16} className="text-slate-400" /> {booth.address}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-6 md:border-l md:border-slate-100 md:pl-6">
-                            <div className="flex flex-col items-end">
-                              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t('polling', 'distance')}</span>
-                              <span className="text-xl font-black text-slate-800">
-                                {booth.distance}
-                              </span>
+                            <div className="flex items-center gap-6 md:border-l md:border-slate-100 md:pl-6">
+                              <div className="flex flex-col items-end">
+                                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">{t('polling', 'distance')}</span>
+                                <span className="text-xl font-black text-slate-800">
+                                  {booth.distance}
+                                </span>
+                              </div>
+                              <button 
+                                className="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors text-slate-600" 
+                                aria-label="Get Directions"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (booth.lat && booth.lon) {
+                                    window.open(`https://www.google.com/maps/dir/?api=1&destination=${booth.lat},${booth.lon}`, '_blank');
+                                  } else {
+                                    window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(booth.name + ' ' + booth.address)}`, '_blank');
+                                  }
+                                }}
+                              >
+                                <Navigation size={20} />
+                              </button>
                             </div>
-                            <button 
-                              className="p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-colors text-slate-600" 
-                              aria-label="Get Directions"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                if (booth.lat && booth.lon) {
-                                  window.open(`https://www.google.com/maps/dir/?api=1&destination=${booth.lat},${booth.lon}`, '_blank');
-                                }
-                              }}
-                            >
-                              <Navigation size={20} />
-                            </button>
                           </div>
-                        </div>
-                      </Tilt>
-                    </motion.div>
-                  ))}
+                        </Tilt>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Google Maps Embed Section */}
+                  <div className="h-[500px] rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm relative group">
+                    <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg border border-slate-200 text-[10px] font-bold uppercase tracking-widest text-slate-500 shadow-sm">
+                      Interactive Map View
+                    </div>
+                    <iframe
+                      title="Google Maps Booth Locator"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src={`https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY_HERE&q=${encodeURIComponent(booths[0]?.name + ' ' + booths[0]?.address || 'New Delhi')}&zoom=14`}
+                    ></iframe>
+                    <div className="absolute inset-0 bg-slate-900/5 pointer-events-none group-hover:bg-transparent transition-colors duration-500"></div>
+                  </div>
                 </div>
                 
                 <div className="mt-8 p-4 bg-slate-50 rounded-2xl border border-slate-100 text-slate-500 text-sm flex gap-3 items-start">

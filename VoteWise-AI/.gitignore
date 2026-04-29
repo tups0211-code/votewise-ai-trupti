@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Cloud SDK & Coverage
+google-cloud-sdk/
+coverage/
+gcloud.zip
+build.log
+build2.log

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, UserCheck, BookOpen, MapPin, ArrowRight, Sparkles, Box, LayoutGrid } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
+import CitizenHelpline from '../components/CitizenHelpline';
 
 const LandingPage = () => {
   const { scrollY } = useScroll();
@@ -129,7 +130,7 @@ const LandingPage = () => {
             </motion.p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-24">
             {features.map((feature, idx) => (
               <motion.div
                 key={idx}
@@ -163,6 +164,16 @@ const LandingPage = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* UNIQUE INNOVATION: Citizen HelpLine Demo Section */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-full"
+          >
+            <CitizenHelpline />
+          </motion.div>
         </div>
       </section>
     </div>

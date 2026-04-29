@@ -318,6 +318,7 @@ const ChatBot = () => {
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
+                  aria-label="Send Message"
                   className="p-3 bg-slate-900 text-white rounded-full hover:bg-slate-800 disabled:opacity-50 disabled:hover:bg-slate-900 transition-colors flex items-center justify-center flex-shrink-0"
                 >
                   <Send size={18} className="ml-0.5" />
