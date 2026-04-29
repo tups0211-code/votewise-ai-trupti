@@ -325,7 +325,12 @@ const ChatBot = () => {
                 </button>
               </form>
               <div className="text-center mt-3 mb-1">
-                <p className="text-[10px] text-slate-400 font-medium tracking-wide">{tLocal('chat', 'powered')}</p>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-50 border border-slate-100 rounded-full shadow-sm">
+                  <div className="w-2 h-2 bg-gradient-to-tr from-blue-400 to-cyan-300 rounded-full animate-pulse" />
+                  <p className="text-[10px] text-slate-500 font-black tracking-widest uppercase">
+                    Powered by <span className="text-blue-600">Google Gemini</span>
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>

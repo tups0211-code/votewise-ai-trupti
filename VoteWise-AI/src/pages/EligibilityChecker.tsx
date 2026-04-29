@@ -113,8 +113,10 @@ const EligibilityChecker = () => {
                     <CheckCircle2 size={36} className="text-emerald-500" />
                     {t('eligibility', 'eligible')}
                   </div>
-                  <div className="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-emerald-200/50 mb-8">
-                    <Sparkles className="text-emerald-500 shrink-0 mt-1" size={20} />
+                  <div className="flex flex-col gap-3 bg-white/50 p-4 rounded-xl border border-emerald-200/50 mb-8">
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 bg-emerald-100/50 text-emerald-800 rounded text-[10px] font-bold uppercase tracking-widest w-fit border border-emerald-200/50">
+                      <Sparkles size={10} className="text-emerald-500" /> Gemini AI Analysis
+                    </div>
                     <p className="text-emerald-800 text-lg font-medium">{explanation}</p>
                   </div>
                   <div className="bg-white p-6 rounded-2xl shadow-sm border border-emerald-100/50">
@@ -134,8 +136,10 @@ const EligibilityChecker = () => {
                     <Info size={36} className="text-orange-500" />
                     {t('eligibility', 'ineligible')}
                   </div>
-                  <div className="flex items-start gap-3 bg-white/50 p-4 rounded-xl border border-orange-200/50 mb-8">
-                    <Sparkles className="text-orange-500 shrink-0 mt-1" size={20} />
+                  <div className="flex flex-col gap-3 bg-white/50 p-4 rounded-xl border border-orange-200/50 mb-8">
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 bg-orange-100/50 text-orange-800 rounded text-[10px] font-bold uppercase tracking-widest w-fit border border-orange-200/50">
+                      <Sparkles size={10} className="text-orange-500" /> Gemini AI Analysis
+                    </div>
                     <p className="text-orange-800 text-lg font-medium">{explanation}</p>
                   </div>
                   <div className="bg-white p-6 rounded-2xl shadow-sm border border-orange-100/50">

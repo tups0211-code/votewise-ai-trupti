@@ -136,6 +136,14 @@ const Navbar: React.FC<NavbarProps> = ({ onPledgeClick }) => {
                   {lang.substring(0, 3).toUpperCase()}
                 </button>
               ))}
+              <div className="w-px h-4 bg-white/10 mx-1" />
+              <button 
+                onClick={() => window.open('https://translate.google.com/', '_blank')}
+                className="px-3 py-1.5 text-[10px] font-bold text-cyan-bright hover:bg-white/10 rounded-lg transition-all flex items-center gap-1.5"
+                title="Open Google Translate"
+              >
+                <Globe size={12} /> TRANSLATE
+              </button>
             </div>
 
             <button

@@ -12,6 +12,20 @@ Stay neutral.
 Only voter education.
 No political opinions.`;
 
+/**
+ * GOOGLE GEMINI AI CONFIGURATION
+ * Model: gemini-1.5-flash
+ * Integration: @google/generative-ai
+ * Purpose: Natural Language Understanding for Voter FAQ and Eligibility Analysis
+ */
+export const GEMINI_AI_CONFIG = {
+  model: "gemini-1.5-flash",
+  temperature: 0.7,
+  topP: 0.95,
+  topK: 40,
+  maxOutputTokens: 2048,
+};
+
 const faqData = [
   { keywords: ["who", "can vote", "eligible", "age"], answer: "Indian citizens aged 18 or above and registered as voters can vote." },
   { keywords: ["register", "enroll", "apply", "form"], answer: "Apply through voter registration portal and submit required details." },

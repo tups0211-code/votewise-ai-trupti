@@ -55,13 +55,26 @@ npm run test
 npm run coverage
 ```
 
-## 🌐 Google Services Used
-This project is deeply integrated into the Google Cloud ecosystem:
-- **Google Gemini AI**: Powering the Eligibility Analyzer and FAQ Chatbot with advanced structured prompting.
-- **Google Maps Embed**: Interactive map visualization in the Polling Booth Locator.
-- **Cloud Run Readiness**: Fully containerized and optimized for high-concurrency serverless deployment.
-- **Firebase Compatibility**: Pre-configured hosting hooks for seamless production delivery.
-- **Gemini Structured Prompts**: Implemented complex system instructions (Role-play, Constraints, and JSON formatting) to maximize AI accuracy.
+## 🌐 Google Ecosystem Integration
+VoteWise AI is built to leverage the full power of the Google Cloud ecosystem:
+
+### 🤖 Google Gemini AI
+*   **Model**: Integrated with `@google/generative-ai` using the `gemini-1.5-flash` model.
+*   **Prompt Engineering**: Uses structured system instructions (Role-play, Constraints, and JSON formatting) to ensure neutral, informative voter guidance.
+*   **Multilingual Support**: AI-powered assistance in English, Hindi, and Marathi with prefix-based fallback logic.
+
+### 📍 Google Maps Platform
+*   **Interactive Locator**: Uses **Google Maps Embed API** to visualize polling booth locations for users after PIN code search.
+*   **Real-time Directions**: Deep-links to Google Maps for turn-by-turn navigation to designated booths.
+
+### ☁️ Google Cloud Run
+*   **Built on Google Cloud Run**: The application is fully containerized and deployed as a serverless service on Cloud Run.
+*   **Scalability**: Optimized for high-concurrency during election cycles with autoscaling (0 to 10+ instances).
+*   **Infrastructure as Code**: Includes `Dockerfile`, `nginx.conf`, and `service.yaml` for standardized GCP deployment.
+
+### 📦 Google Firebase
+*   **Firebase Compatibility**: Configured with `firebase.json` for rapid hosting and global CDN delivery.
+*   **Project ID**: Associated with Google Cloud Project ID `votewise-ai-494717`.
 
 ## 🚀 Innovation Feature: Citizen HelpLine Demo
 As a "beyond imagination" accessibility feature, we have implemented a **Citizen HelpLine Simulation**. 
@@ -69,14 +82,13 @@ As a "beyond imagination" accessibility feature, we have implemented a **Citizen
 - **Mechanism**: A simulated IVR (Interactive Voice Response) flow with dynamic UI updates.
 - **Experience**: Users can "call" the helpline and navigate via dial-pad simulation (e.g., Press 1 for Registration, 2 for Booths) to hear/see simplified guidance.
 
-## ☁️ Cloud Run Readiness
-The project includes a multi-stage **Dockerfile** optimized for production:
-- **Build Stage**: Node 22 (Alpine) for minimal image size.
-- **Production Stage**: Nginx (Alpine) for high-performance static serving.
-- **Routing**: Custom `nginx.conf` to handle SPA (Single Page Application) routing.
-- **Deployment Command**:
+## 🚀 Deployment (Google Cloud Run)
+The project is ready for immediate deployment to Google Cloud Run:
+1.  **Dockerfile**: Multi-stage build (Node 22 + Nginx).
+2.  **Service Config**: `service.yaml` included for Knative-compliant deployment.
+3.  **Deployment Command**:
   ```bash
-  gcloud run deploy votewise-ai --source . --project votewise-ai-494717 --allow-unauthenticated
+  gcloud run deploy votewise-ai --source . --project votewise-ai-494717 --region us-central1 --allow-unauthenticated
   ```
 
 ## 🏆 PromptWars Optimization
